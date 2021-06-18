@@ -261,7 +261,7 @@ const App: React.FC = () => {
     };
     openRequest.onupgradeneeded = function (event: any) {
       console.log('open db --- onupgradeneeded');
-
+      db = event.target.result;
       dbCategories = event.target.result;
 
       if (!db.objectStoreNames.contains('ListTask')) {
