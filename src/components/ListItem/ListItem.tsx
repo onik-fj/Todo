@@ -58,7 +58,6 @@ export const ListItem: React.FC<IListItemProps> = ({
     setStatusEdit(!statusEdit);
     setNewText(todo.title);
     setNewDescription(todo.description);
-    console.log(todo.categories);
     setCategories(todo.categories? todo.categories:"")
     document.body.classList.add("body-back");
 

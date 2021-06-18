@@ -92,6 +92,12 @@ const todoSlice = createSlice({
       //   return state.todosCategories.splice(state.todosCategories.indexOf(todo), 1);
       // }
     })
+    state.todosTask.map(todo => {
+      if (todo.categories === action.payload.title) {
+        todo.categories = undefined;
+      }
+      return todo;
+    })
   },
   getTodoTask(state, action: PayloadAction<Array<Todo>>) {
     action.payload.map((todo) => state.todosTask.push(todo));

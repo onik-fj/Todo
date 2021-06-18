@@ -13,7 +13,6 @@ interface IListProps{
 
 export const List: React.FC<IListProps> = ({deleteTodo, editTodoT, editTodoC}) => {
   const todoList = useSelector((state: RootState) => state);
-  console.log(todoList.todosTask.length)
   return (
     <section>
       <div className={"container-list"}>

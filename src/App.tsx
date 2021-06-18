@@ -196,6 +196,7 @@ const App: React.FC = () => {
     }
     else {
       listDB = "ListCategories";
+      dispatch(removeTodoTask(todo));
       dispatch(removeTodoCategories(todo));
     }
     let openRequest = indexedDB.open('TodoDB', 1);
