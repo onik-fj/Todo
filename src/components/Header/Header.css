@@ -1,0 +1,333 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  min-width: 1440px;
+  height: 88px;
+  background: #3f72af;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+.header-nav {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.title-label {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  margin: 24px 0 24px 24px;
+}
+.header-menu {
+  display: flex;
+  margin-left: 57px;
+  align-items: center;
+}
+.header-btn {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 40px;
+  display: flex;
+  align-items: flex-end;
+  text-decoration-line: underline;
+  background: none;
+  border: none;
+  color: #dbe2ef;
+  margin: 0 8px 0 8px;
+  padding: 0;
+}
+.header-btn:hover{
+  color: #ffffff;
+}
+.header-btn-active {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 40px;
+  display: flex;
+  align-items: flex-end;
+  text-decoration-line: underline;
+  background: none;
+  border: none;
+  color: #8fb6ff;
+  margin: 0 8px 0 8px;
+  padding: 0;
+}
+.header-img {
+  background: #dbe2ef;
+}
+.form-add {
+  display: none;
+}
+.form-add-active {
+  position: fixed;
+  width: 800px;
+  height: 376px;
+  left: 560px;
+  top: 352px;
+  z-index: 100;
+  background: #dbe2ef;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  overflow: hidden;
+  pointer-events: all;
+}
+.btn-add {
+  font-family: Roboto;
+  font-size: 20px;
+  line-height: 46px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  color: #ffffff;
+  margin: 21px 30px 21px 0;
+}
+.btn-add:hover{
+  color: #dbe2ef;
+}
+section {
+  margin-top: 2px;
+  display: flex;
+  justify-content: center;
+}
+.title-modal-add {
+  position: absolute;
+  left: 32px;
+  top: 24px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 56px;
+  display: flex;
+  align-items: center;
+
+  color: #3f72af;
+}
+
+.input-task {
+  position: absolute;
+  top: 130px;
+  left: 24px;
+  background: #dbe2ef;
+  width: 364px;
+  height: 46px;
+  border: 2px solid #3f72af;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding-left: 8px;
+  outline:none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 46px;
+}
+.input-categories{
+  position: absolute;
+  top: 130px;
+  left: 24px;
+  background: #dbe2ef;
+  width: 752px;
+  height: 46px;
+  border: 2px solid #3f72af;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding-left: 8px;
+  outline:none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 46px;
+}
+.input-task:focus{
+  border: 2px solid #257FEA;
+}
+.input-task:hover{
+  border: 2px solid #257FEA;
+}
+.input-task::placeholder {
+  display: flex;
+  align-items: center;
+
+  color: rgba(0, 0, 0, 0.5);
+}
+.input-task-name-title {
+  position: relative;
+  padding-left: 2px;
+  left: 36px;
+  top: 120px;
+  width: 47px;
+  height: 19px;
+  background-color: #dbe2ef;
+  z-index: 1;
+}
+.input-task-name-text {
+  position: absolute;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #3f72af;
+  mix-blend-mode: normal;
+}
+.input-task-name-img {
+  position: absolute;
+  left: 40px;
+  top: 3px;
+  width: 6px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #ec1d1d;
+  mix-blend-mode: normal;
+}
+.input-description {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  position: absolute;
+  top: 210px;
+  left: 24px;
+  font-size: 20px;
+  background: #dbe2ef;
+  width: 752px;
+  height: 72px;
+  border: 2px solid #3f72af;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 7px 0 0 8px;
+  resize: none;
+  outline: none;
+}
+.input-description:hover{
+  border: 2px solid #257FEA;
+}
+.input-description:focus{
+  border: 2px solid #257FEA;
+}
+.input-description::placeholder { 
+  position: absolute;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 46px;
+  margin-top: -10px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.input-description-name-text {
+  position: absolute;
+  padding-left: 2px;
+  left: 36px;
+  top: 200px;
+  width: 86px;
+  height: 19px;
+  z-index: 1;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+  display: flex;
+  color: #3f72af;
+  mix-blend-mode: normal;
+  background: #dbe2ef;
+}
+.form-btn-create {
+  display: flex;
+  width: 200px;
+  height: 46px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 306px;
+  left: 434px;
+  background: #3f72af;
+  border: 2px solid #3f72af;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.form-btn-create:hover  {
+  background: #257FEA;
+  border: 2px solid #257FEA;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.form-btn-create:active{
+  background: #65ABFF;
+  border: 2px solid #65ABFF;
+}
+.form-btn-create-span {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 46px;
+
+  color: #ffffff;
+}
+.form-btn-cancel {
+  position: absolute;
+  top: 306px;
+  left: 656px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #3f72af;
+  border: 2px solid #3f72af;
+  box-sizing: border-box;
+  border-radius: 4px;
+  width: 120px;
+  height: 46px;
+}
+.form-btn-cancel:hover{
+  background: rgba(37, 127, 234, 0.2);
+  border: 2px solid #257FEA;
+}
+.form-btn-cancel:active{
+  background: #257FEA;
+  border: 2px solid #257FEA;
+}
+.form-btn-cancel-span {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 46px;
+}
+.form-btn-cancel-span:hover{
+  color: #257FEA;
+}
+.form-btn-cancel-span:active{
+  color: #ffffff;
+}
+.form-btn-close{
+  position: absolute;
+  left: 752px;
+  top: 24px;
+  display: flex;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #dbe2ef;
+  border: none;
+}
+.icon-close{
+  cursor: pointer;
+}

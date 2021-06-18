@@ -1,0 +1,31 @@
+.container-list{
+    display: flex;
+    justify-content: center;
+}
+.list{
+    width: 1000px;
+    margin: 0;
+    padding: 0;
+}
+.item-list{
+    border-bottom: 2px solid #3F72AF;
+}
+.item-list:hover{
+    background: rgba(37, 127, 234, 0.2);
+}
+.list-empty{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    background: #e73b3b;
+    border: 5px solid #d3d611;
+    box-sizing: border-box;
+    border-radius: 4px;
+    outline:none;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 46px;
+    color: #ffffff;
+}

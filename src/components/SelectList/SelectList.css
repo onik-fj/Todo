@@ -1,0 +1,47 @@
+.select-list {
+  position: absolute;
+  top: 130px;
+  left: 412px;
+  width: 364px;
+  height: 46px;
+  padding-left: 8px;
+  background: #dbe2ef;
+  color: rgba(0, 0, 0, 0.5);
+  border: 2px solid #3F72AF;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 20px;
+  line-height: 46px;
+  outline: none;
+}
+.option-item {
+  border: 2px solid #257fea;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.select-list:hover {
+  color: #000;
+  border: 2px solid #257FEA;  
+}
+.select-list:focus {
+  color: #000;
+  border: 2px solid #257FEA;
+}
+.select-title{
+  position: absolute;
+  padding-left: 2px;
+  left: 424px;
+  top: 120px;
+  width: 90px;
+  height: 19px;
+  z-index: 1;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+  display: flex;
+  color: #3f72af;
+  mix-blend-mode: normal;
+  background: #dbe2ef;
+}

@@ -1,0 +1,210 @@
+.form-delete {
+  display: none;
+}
+.item-list {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  height: 80px;
+}
+.title-item {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0 8px 16px;
+}
+.info-up {
+  display: flex;
+  margin: 0 0 4px 0;
+}
+.item-task {
+    font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  margin-right: 16px;
+}
+
+.categories-img{
+  display: none;
+}
+.categories-img-show {
+  margin-top: 2px;
+  width: 24px;
+  height: 18px;
+}
+.item-categories {
+    font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #3f72af;
+  margin-left: 4px;
+}
+.info-bottom {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #808080;
+    margin-top: 12px;
+}
+.item-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 37px 20px 24px 0;
+}
+.item-edit-btn{
+    margin-left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.item-delete-btn{
+    margin-left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.form-delete-show {
+  position: fixed;
+  width: 600px;
+  height: 238px;
+  left: 660px;
+  top: 421px;
+  background: #dbe2ef;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  overflow: hidden;
+  pointer-events: all;
+}
+.body-back {
+  background: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  pointer-events: none;
+}
+.delete-form-title{
+  position: absolute;
+  width: 516px;
+  height: 56px;
+  left: 24px;
+  top: 32px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 40px;
+line-height: 56px;
+
+display: flex;
+align-items: center;
+
+color: #3F72AF;
+}
+.delete-form-label{
+  position: absolute;
+  width: 500px;
+height: 24px;
+left: 24px;
+top: 120px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 24px;
+color: #000000;
+}
+.delete-form-accept {
+  position: absolute;
+  left: 312px;
+  top: 168px;
+  display: flex;
+  width: 120px;
+  height: 46px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background: #3f72af;
+  border: 2px solid #3f72af;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.delete-form-accept:hover  {
+  background: #257FEA;
+  border: 2px solid #257FEA;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.delete-form-accept:active{
+  background: #65ABFF;
+  border: 2px solid #65ABFF;
+}
+.delete-form-accept-span {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 46px;
+
+  color: #ffffff;
+}
+.delete-form-cancel {
+  position: absolute;
+  left: 460px;
+  top: 168px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #3f72af;
+  border: 2px solid #3f72af;
+  box-sizing: border-box;
+  border-radius: 4px;
+  width: 120px;
+  height: 46px;
+}
+.delete-form-cancel:hover{
+  background: rgba(37, 127, 234, 0.2);
+  border: 2px solid #257FEA;
+}
+.delete-form-cancel:active{
+  background: #257FEA;
+  border: 2px solid #257FEA;
+}
+.delete-form-cancel-span {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 46px;
+}
+.delete-form-cancel-span:hover{
+  color: #257FEA;
+}
+.delete-form-cancel-span:active{
+  color: #ffffff;
+}
+.delete-form-close{
+  position: absolute;
+  display: flex;
+  left: 552px;
+  top: 24px;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #dbe2ef;
+  border: none;
+}
+.icon-close{
+  cursor: pointer;
+}
