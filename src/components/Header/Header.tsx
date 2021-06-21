@@ -107,7 +107,7 @@ export const Header: React.FC<IHeaderProps> = ({ addTodoItem, addTodoCategories,
           onChange={handleChangeText}
           required={true}
           className={todoList.completed ?"input-task":"input-categories"}
-          placeholder="Введите имя задачи"
+          placeholder={todoList.completed ?"Введите имя задачи":"Введите имя категории"}
         />
         <div className={"input-task-name-title"}>
           <span className={"input-task-name-text"}>
@@ -124,7 +124,7 @@ export const Header: React.FC<IHeaderProps> = ({ addTodoItem, addTodoCategories,
           onChange={handleChangeDescription}
           required={true}
           className={"input-description"}
-          placeholder="Введите описание задачи"
+          placeholder={todoList.completed ?"Введите описание задачи":"Введите описание категории"}
         />
         <button
           type="submit"
