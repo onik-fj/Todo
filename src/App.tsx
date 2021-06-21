@@ -217,8 +217,30 @@ const App: React.FC = () => {
         .delete(todo.id);
       request.onsuccess = function () {
         console.log('Задача удалена из БД');
+        if(listDB!=="ListTask")
+        {
+          let dbTask = db.transaction("ListTask", 'readwrite')
+          let store = dbTask.objectStore("ListTask");
+          let index = store.index("categories_idx");
+            let request = index.getAll(todo.categories);
+            request.onsuccess = function() {
+              if (request.result !== undefined) {
+                for (let item of request.result){
+                  let todo = {
+                    id: item.id,
+                    title: item.title,
+                    description: item.description,
+                    categories: ""
+                  };
+                  store.put(todo);
+                }
+              } else {
+                console.log("Нет таких категорий");
+              }
+          }
+        }
       };
-
+      
       request.onerror = function (event: any) {
         console.log('Ошибка при удалении объекта из БД', event.target.error);
       };
@@ -226,15 +248,13 @@ const App: React.FC = () => {
 
     openRequest.onupgradeneeded = function (event: any) {
       console.log('open db --- onupgradeneeded');
-
       db = event.target.result;
-
       if (!db.objectStoreNames.contains(listDB)) {
         db.createObjectStore(listDB, { keyPath: 'id', autoIncrement: false });
       };
       if (!db.objectStoreNames.contains(listDB)) {
         db.createObjectStore(listDB, { autoIncrement: false });
-      };
+      }
     };
   }
   useEffect(() => {
@@ -266,7 +286,7 @@ const App: React.FC = () => {
       dbCategories = event.target.result;
 
       if (!db.objectStoreNames.contains('ListTask')) {
-        db.createObjectStore('ListTask', { keyPath: 'id', autoIncrement: false });
+        db.createObjectStore('ListTask', { keyPath: 'id', autoIncrement: false }).createIndex("categories_idx", "categories");
       };
       if (!db.objectStoreNames.contains('ListTask')) {
         db.createObjectStore('ListTask', { autoIncrement: false });
