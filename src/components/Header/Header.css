@@ -170,6 +170,9 @@ section {
   background-color: #dbe2ef;
   z-index: 1;
 }
+.hover{
+  color: #257FEA !important;
+}
 .input-task-name-text {
   position: absolute;
   font-family: Roboto;
@@ -180,6 +183,7 @@ section {
   display: flex;
   align-items: center;
   color: #3f72af;
+  border: none !important;
   mix-blend-mode: normal;
 }
 .input-task-name-img {
@@ -239,6 +243,7 @@ section {
   width: 86px;
   height: 19px;
   z-index: 1;
+  border: none !important;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -248,6 +253,10 @@ section {
   color: #3f72af;
   mix-blend-mode: normal;
   background: #dbe2ef;
+}
+.invalid {
+  border: 2px solid #dd2828;
+  color: #dd2828 !important;
 }
 .form-btn-create {
   display: flex;
@@ -330,4 +339,30 @@ section {
 }
 .icon-close{
   cursor: pointer;
+}
+.error-label-title-show{
+  position: relative;
+  top: 155px;
+  font-size: 11px;
+  left: 36px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  color: #ec1d1d;
+}
+.error-title-label{
+  opacity: 0;
+}
+.error-label-description-show{
+  position: absolute;
+  top: 284px;
+  font-size: 11px;
+  left: 36px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  color: #ec1d1d;
+}
+.error-description-label{
+  opacity: 0;
 }

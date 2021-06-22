@@ -51,7 +51,6 @@ export const ListItem: React.FC<IListItemProps> = ({
     editTodoT(todo.id, newTitle, newDescription, newCategories);
     closeFormEdit(e);
     setStatusEdit(false);
-    setStatusEdit(false);
   };
   const openFormEdit = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
