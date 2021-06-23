@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import "./ListItem.css";
 import DeleteBTN from "../../img/delete-icon.svg";
 import EditBTN from "../../img/edit-icon.svg";
@@ -6,9 +6,12 @@ import CategoriesBTN from "../../img/folder-icon.svg";
 import iconClose from "../../img/icon-close.svg"
 import inputNameImg from "../../img/input-name-img.svg";
 import { SelectList } from "../SelectList/SelectListEdit";
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+
 interface IListItemProps {
   todo: Todo,
-  editTodoT: EditTodoTask,
+  editTodoT: EditTodo,
   deleteTodo: DeleteTodo
 }
 
@@ -17,8 +20,6 @@ export const ListItem: React.FC<IListItemProps> = ({
   editTodoT,
   deleteTodo
 }) => {
-  const [newTitle, setNewText] = useState("");
-  const [newDescription, setNewDescription] = useState("");
   const [newCategories, setCategories] = useState("");
   const [statusEdit, setStatusEdit] = useState(false);
   const [statusDelete, setStatusDelete] = useState(false);
@@ -38,39 +39,36 @@ export const ListItem: React.FC<IListItemProps> = ({
     deleteTodo(todo, true);
     document.body.classList.remove("body-back");
   };
-  const handleChangeText = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setNewText(e.target.value);
-  };
-  const handleChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    e.preventDefault();
-    setNewDescription(e.target.value);
-  };
-  const handleSubmitTask = (e: FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    editTodoT(todo.id, newTitle, newDescription, newCategories);
-    closeFormEdit(e);
-    setStatusEdit(false);
-  };
   const openFormEdit = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setStatusEdit(!statusEdit);
-    setNewText(todo.title);
-    setNewDescription(todo.description);
-    setCategories(todo.categories? todo.categories:"")
+    setCategories(todo.categories ? todo.categories : "")
     document.body.classList.add("body-back");
 
   };
-  const closeFormEdit = (e: FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setStatusEdit(!statusEdit);
-    document.body.classList.remove("body-back");
-    setNewText("");
-    setNewDescription("");
-  };
-  const handleChangeSelecter=(value:string)=>{
+  const handleChangeSelecter = (value: string) => {
     setCategories(value);
   }
+  const handleSubmitT = (todo: Todo) => {
+    setStatusEdit(false);
+    editTodoT(todo.id, todo.title, todo.description, newCategories);
+    document.body.classList.remove("body-back");
+  }
+  const closeFormEdit = (e: FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setStatusEdit(false);
+    document.body.classList.remove("body-back");
+  };
+  const handleValidSchema = Yup.object().shape({
+    title: Yup.string()
+      .min(2, 'Too Short!')
+      .max(255, 'Too Long!')
+      .required('Поле должно быть заполнено'),
+    description: Yup.string()
+      .min(2, 'Too Short!')
+      .max(512, 'Too Long!')
+      .required('Поле должно быть заполнено'),
+  });
   return (
     <div className={"item"}>
       <li className={"item-list"}>
@@ -91,51 +89,39 @@ export const ListItem: React.FC<IListItemProps> = ({
           </button>
         </div>
       </li>
-      <form className={statusEdit ? "form-add-active" : "form-add"}>
-        <label className={"title-modal-add"}>{"Редактирование задачи"}</label>
-        <input
-          type="text"
-          value={newTitle}
-          onChange={handleChangeText}
-          required={true}
-          className={"input-task"}
-          placeholder="Введите имя задачи"
-        />
-        <div className={"input-task-name-title"}>
-          <span className={"input-task-name-text"}>
-            Имя
-          </span>
-          <img src={inputNameImg} alt="" className={"input-task-name-img"} />
-        </div>
-        <SelectList todoTaskC={todo} selector={handleChangeSelecter}/>
-        <div className={"input-description-name-text"}>
-          Описание
-        </div>
-        <textarea
-          value={newDescription}
-          onChange={handleChangeDescription}
-          required={true}
-          className={"input-description"}
-          placeholder="Введите описание задачи"
-        />
-        <button
-          type="submit"
-          onClick={handleSubmitTask}
-          className={"form-btn-create"}
-        >
-          <span className={"form-btn-create-span"}>Сохранить</span>
-        </button>
-        <button
-          type="submit"
-          onClick={closeFormEdit}
-          className={"form-btn-cancel"}
-        >
-          <span className={"form-btn-cancel-span"}>Закрыть</span>
-        </button>
-        <button onClick={closeFormEdit} className={"form-btn-close"}>
-          <img src={iconClose} alt="" className={"icon-close"} />
-        </button>
-      </form>
+      <Formik
+        initialValues={todo
+        }
+        validationSchema={handleValidSchema}
+        onSubmit={(
+          values: Todo
+        ) => {
+          handleSubmitT(values);
+        }}
+      >
+        {({ errors, touched }) => (
+          <Form className={statusEdit ? "form-edit-task-active" : "form-edit-task"}>
+            <label className={"label-edit-task"}>{"Редактирование задачи"}</label>
+            <div className={"edit-title-task"}>
+              <label className={"edit-title"} htmlFor="title">Имя</label>
+              <img src={inputNameImg} alt="" className={"edit-title-img"} />
+            </div>
+            <Field className={"edit-field-title"} name="title" placeholder="Введите имя" />
+            {errors.title && touched.title ? (
+              <div className={"error-field-title"}>{errors.title}</div>
+            ) : null}
+
+            <label className={"edit-desctiption"} htmlFor="description">Описание</label>
+            <Field className={"edit-field-desctiption"} name="description" placeholder="Введите описание" />
+            {errors.description && touched.description ? (
+              <div className={"error-field-description"}>{errors.description}</div>
+            ) : null}
+            <SelectList todoTaskC={todo} selector={handleChangeSelecter} />
+            <button type="submit" className={"btn-edit-save"}>Сохранить</button>
+            <button type="button" onClick={closeFormEdit} className={"btn-edit-cancel"}>Закрыть</button>
+          </Form>
+        )}
+      </Formik>
       <form className={statusDelete ? "form-delete-show" : "form-delete"}>
         <label className={"delete-form-title"}>Удаление задачи</label>
         <label className={"delete-form-label"}>Вы действительно хотите удалить "{todo.title}"?</label>

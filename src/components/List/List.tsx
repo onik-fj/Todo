@@ -7,8 +7,8 @@ import "./List.css";
 
 interface IListProps{
   deleteTodo : DeleteTodo,
-  editTodoT: EditTodoTask,
-  editTodoC: EditTodoCategoties
+  editTodoT: EditTodo,
+  editTodoC: EditTodo
 }
 
 export const List: React.FC<IListProps> = ({deleteTodo, editTodoT, editTodoC}) => {

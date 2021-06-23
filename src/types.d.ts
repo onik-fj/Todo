@@ -19,5 +19,4 @@ type Selector = (categories: string) => void;
 
 type AddTodoItem = (title: string, description: string, categories: string)=>void;
 type AddTodoCategories = (title: string, description: string)=>void;
-type EditTodoTask = (id:string, title: string, description: string, categories: string)=> void;
-type EditTodoCategoties = (id:string, title: string, description: string)=> void;
+type EditTodo = (id:string, title: string, description: string, categories: string)=> void;

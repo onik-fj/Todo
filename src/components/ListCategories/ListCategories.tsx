@@ -1,12 +1,14 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import "../ListItem/ListItem.css";
 import DeleteBTN from "../../img/delete-icon.svg";
 import EditBTN from "../../img/edit-icon.svg";
 import inputNameImg from "../../img/input-name-img.svg";
 import iconClose from "../../img/icon-close.svg";
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 interface IListItemProps {
   todo: TodoCategories,
-  editTodoC: EditTodoCategoties,
+  editTodoC: EditTodo,
   deleteTodo: DeleteTodo
 }
 
@@ -15,10 +17,9 @@ export const ListCategories: React.FC<IListItemProps> = ({
   editTodoC,
   deleteTodo
 }) => {
-  const [newTitle, setNewText] = useState("");
-  const [newDescription, setNewDescription] = useState("");
   const [statusEdit, setStatusEdit] = useState(false);
   const [statusDelete, setStatusDelete] = useState(false);
+  let oldCategories = todo.title;
   const openFormDelete = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     document.body.classList.add("body-back");
@@ -35,35 +36,31 @@ export const ListCategories: React.FC<IListItemProps> = ({
     deleteTodo(todo, false);
     document.body.classList.remove("body-back");
   };
-  const handleChangeText = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setNewText(e.target.value);
-  };
-  const handleChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    e.preventDefault();
-    setNewDescription(e.target.value);
-  };
-  const handleSubmitCategories = (e: FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    editTodoC(todo.id ,newTitle, newDescription);
-    closeFormEdit(e);
-    setStatusDelete(!statusDelete);
-    setStatusDelete(!statusEdit);
-  };
   const openFormEdit = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setStatusEdit(!statusEdit);
-    setNewText(todo.title);
-    setNewDescription(todo.description);
     document.body.classList.add("body-back");
   };
+  const handleSubmitT = (todo: Todo) => {
+    setStatusEdit(false);
+    editTodoC(todo.id, todo.title, todo.description, oldCategories);
+    document.body.classList.remove("body-back");
+  }
   const closeFormEdit = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setStatusEdit(!statusEdit);
+    setStatusEdit(false);
     document.body.classList.remove("body-back");
-    setNewText("");
-    setNewDescription("");
   };
+  const handleValidSchema = Yup.object().shape({
+    title: Yup.string()
+      .min(2, 'Too Short!')
+      .max(255, 'Too Long!')
+      .required('Поле должно быть заполнено'),
+    description: Yup.string()
+      .min(2, 'Too Short!')
+      .max(512, 'Too Long!')
+      .required('Поле должно быть заполнено'),
+  });
   return (
     <div className={"item"}>
       <li className={"item-list"}>
@@ -82,50 +79,38 @@ export const ListCategories: React.FC<IListItemProps> = ({
           </button>
         </div>
       </li>
-      <form className={statusEdit ? "form-add-active" : "form-add"}>
-        <label className={"title-modal-add"}>{"Редактирование категории"}</label>
-        <input
-          type="text"
-          value={newTitle}
-          onChange={handleChangeText}
-          required={true}
-          className={"input-categories"}
-          placeholder="Введите имя задачи"
-        />
-        <div className={"input-task-name-title"}>
-          <span className={"input-task-name-text"}>
-            Имя
-          </span>
-          <img src={inputNameImg} alt="" className={"input-task-name-img"} />
-        </div>
-        <div className={"input-description-name-text"}>
-          Описание
-        </div>
-        <textarea
-          value={newDescription}
-          onChange={handleChangeDescription}
-          required={true}
-          className={"input-description"}
-          placeholder="Введите описание задачи"
-        />
-        <button
-          type="submit"
-          onClick={handleSubmitCategories}
-          className={"form-btn-create"}
-        >
-          <span className={"form-btn-create-span"}>Сохранить</span>
-        </button>
-        <button
-          type="submit"
-          onClick={closeFormEdit}
-          className={"form-btn-cancel"}
-        >
-          <span className={"form-btn-cancel-span"}>Закрыть</span>
-        </button>
-        <button onClick={closeFormEdit} className={"form-btn-close"}>
-          <img src={iconClose} alt="" className={"icon-close"} />
-        </button>
-      </form>
+      <Formik
+        initialValues={todo
+        }
+        validationSchema={handleValidSchema}
+        onSubmit={(
+          values: Todo
+        ) => {
+          handleSubmitT(values);
+        }}
+      >
+        {({ errors, touched }) => (
+          <Form className={statusEdit ? "form-edit-task-active" : "form-edit-task"}>
+            <label className={"label-edit-task"}>{"Редактирование категории"}</label>
+            <div className={"edit-title-task"}>
+              <label className={"edit-title"} htmlFor="title">Имя</label>
+              <img src={inputNameImg} alt="" className={"edit-title-img"} />
+            </div>
+            <Field className={"edit-field-title-categories"} name="title" placeholder="Введите имя категории" />
+            {errors.title && touched.title ? (
+              <div className={"error-field-title"}>{errors.title}</div>
+            ) : null}
+
+            <label className={"edit-desctiption"} htmlFor="description">Описание</label>
+            <Field className={"edit-field-desctiption"} name="description" placeholder="Введите описание категории" />
+            {errors.description && touched.description ? (
+              <div className={"error-field-description"}>{errors.description}</div>
+            ) : null}
+            <button type="submit" className={"btn-edit-save"}>Сохранить</button>
+            <button type="button" onClick={closeFormEdit} className={"btn-edit-cancel"}>Закрыть</button>
+          </Form>
+        )}
+      </Formik>
       <form className={statusDelete ? "form-delete-show" : "form-delete"}>
       <label className={"delete-form-title"}>Удаление категории</label>
         <label className={"delete-form-label"}>Вы действительно хотите удалить "{todo.title}"?</label>
